@@ -1,24 +1,140 @@
 aid: melty
 name: Melty
-description: 'Melty is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Melty is a French digital media brand for youth culture — news and entertainment coverage of
+  series, cinema, television, celebrity, gaming and lifestyle aimed at a 15-34 audience. Founded in
+  2008 in Paris and operated by EEPLE SAS, Melty was a Serena Capital portfolio company before
+  Reworld Media acquired 100% of the business in a distressed M&A process completed in 2021-2022;
+  melty.fr is now published by EEPLE within Groupe Reworld Media and monetised through advertising
+  and native content rather than software licensing. Melty publishes no developer program, no public
+  API product and no machine-readable API contract. Its only public developer surface is the
+  meltygroup GitHub organisation, which carries the identity servers Kisee and Pasee — MIT-licensed,
+  self-hosted Python HTTP API servers written in-house and released to PyPI, last published in 2021.
 url: https://raw.githubusercontent.com/api-evangelist/melty/refs/heads/main/apis.yml
+image: https://www.melty.fr/wp-content/uploads/meltyfr/2023/06/melty-logo.jpg
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
 - Consumer
-apis: []
+- Media
+- Publishing
+- News
+- Entertainment
+- France
+- Advertising
+- Open Source
+- Identity
+apis:
+- aid: melty-kisee
+  name: Kisee — Identity Provider Server
+  description: >-
+    Kisee is an open-source HTTP API server published by Melty Group that exchanges valid
+    username/password pairs for JSON Web Tokens, and nothing else. It is self-hosted software, not a
+    Melty-operated public API: you install it from PyPI and run it yourself against your own identity
+    backend (LDAP, PostgreSQL, a flat file, or any backend you implement as a Python class). Responses
+    are CoreJSON hypermedia documents. Last released to PyPI as 21.9.0 in September 2021. No OpenAPI,
+    AsyncAPI or GraphQL SDL is published for it.
+  humanURL: https://kisee.readthedocs.io/en/latest/
+  baseURL: http://{host}:8140
+  tags:
+  - Identity
+  - Authentication
+  - JWT
+  - Open Source
+  - Self-Hosted
+  properties:
+  - type: Documentation
+    url: https://kisee.readthedocs.io/en/latest/
+  - type: SourceCode
+    url: https://github.com/meltygroup/kisee
+  - type: License
+    url: https://github.com/meltygroup/kisee/blob/master/LICENSE
+- aid: melty-pasee
+  name: Pasee — Identity Management Server
+  description: >-
+    Pasee is an open-source HTTP API server published by Melty Group that layers group and user
+    management over one or more identity providers — one or many Kisee instances plus external
+    providers such as Twitter or GitHub. It serves a JSON-Home document at its root describing its
+    users, groups and tokens resources, and issues ES256-signed JWTs. Self-hosted software rather
+    than a Melty-operated public API; last released to PyPI as 21.4.1 in April 2021. No OpenAPI,
+    AsyncAPI or GraphQL SDL is published for it.
+  humanURL: https://pasee.readthedocs.io/en/latest/
+  baseURL: http://{host}:8150
+  tags:
+  - Identity
+  - Authentication
+  - JWT
+  - Open Source
+  - Self-Hosted
+  properties:
+  - type: Documentation
+    url: https://pasee.readthedocs.io/en/latest/
+  - type: SourceCode
+    url: https://github.com/meltygroup/pasee
+  - type: License
+    url: https://github.com/meltygroup/pasee/blob/master/LICENSE
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/melty-domain-security.yml
 - type: Website
-  url: http://www.melty.fr/
+  url: https://www.melty.fr/
+- type: Blog
+  url: https://www.melty.fr/actu/
+- type: BlogRSS
+  url: https://www.melty.fr/feed/
+- type: GitHubOrganization
+  url: https://github.com/meltygroup
+- type: Support
+  url: https://www.melty.fr/nous-contacter
+- type: TermsOfService
+  url: https://www.melty.fr/mentions-legales
+- type: PrivacyPolicy
+  url: https://www.reworldmedia.com/mentions-legales/politique-des-donnees-a-caractere-personnel-et-cookies
+- type: Packages
+  url: packages/melty-packages.yml
+- type: LLMsTxt
+  url: llms/melty-llms.txt
+- type: Lifecycle
+  url: lifecycle/melty-lifecycle.yml
+- type: Plans
+  url: plans/melty-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/melty-rate-limits.yml
+- type: Conformance
+  url: conformance/melty-conformance.yml
+- type: Authentication
+  url: authentication/melty-authentication.yml
+- type: Conventions
+  url: conventions/melty-conventions.yml
+x-enrichment:
+  date: '2026-08-17'
+  status: minimal
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: unreadable
+  reason: no-machine-readable-spec
+  detail: >-
+    melty.fr is a WordPress consumer media site with no developer portal at all, and the only two
+    documented HTTP APIs the company ever published — the self-hosted Kisee and Pasee identity
+    servers on readthedocs — ship no OpenAPI, AsyncAPI, GraphQL SDL, Postman collection or JSON
+    Schema in any of the 7 meltygroup GitHub repositories.
+  evidence:
+  - url: https://www.melty.fr/openapi.json
+    status: 404
+  - url: https://www.melty.fr/.well-known/agent-card.json
+    status: 404
+  - url: https://kisee.readthedocs.io/en/latest/
+    status: 200
+  - url: https://api.github.com/repos/meltygroup/kisee/git/trees/HEAD?recursive=1
+    status: 200
+  checked: '2026-08-17'

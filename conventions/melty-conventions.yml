@@ -1,0 +1,60 @@
+generated: '2026-08-17'
+method: derived
+source: >-
+  authentication/melty-authentication.yml, conformance/melty-conformance.yml,
+  https://github.com/meltygroup/kisee (README), https://github.com/meltygroup/pasee (docs/API.rst)
+note: >-
+  Cross-cutting runtime semantics for the two open-source servers Melty Group published. Melty
+  operates no API, so there are no provider-wide conventions to document beyond these. Everything
+  marked `documented: false` is a genuine absence in the published docs, not an unchecked field —
+  no `Idempotency` pointer is emitted in apis.yml because no idempotency support exists.
+auth:
+  style: bearer-jwt
+  algorithm: ES256
+  token_endpoint: POST /jwt/ (kisee)
+  see: authentication/melty-authentication.yml
+discovery:
+  json_home: true
+  json_home_path: / (pasee)
+  hypermedia: corejson
+  note: >-
+    Both servers self-describe at runtime — Pasee via a JSON-Home document listing users, groups and
+    tokens; Kisee via CoreJSON documents whose typed `link` objects carry `action`, `title`,
+    `description` and required `fields`. This runtime self-description is what stands in for an
+    OpenAPI; it is machine-readable only after you have deployed the server.
+idempotency:
+  documented: false
+  header: null
+  scope: null
+  retention: null
+pagination:
+  documented: false
+  style: null
+  parameters: []
+  response_fields: []
+field_expansion:
+  documented: false
+sparse_fields:
+  documented: false
+metadata:
+  documented: false
+request_id_tracing:
+  documented: false
+  header: null
+versioning:
+  api_versioning: none
+  package_versioning: calver
+  see: lifecycle/melty-lifecycle.yml
+errors:
+  envelope: unspecified
+  rfc9457: false
+  documented_status_codes: [201]
+  note: >-
+    The only status code named in the published documentation is 201 Created (self-registration on
+    `POST /users/`, with a `Location` header). No error envelope, error catalog or problem-type
+    registry is published, so no errors/ artifact is written for this provider.
+rate_limit_signaling:
+  documented: false
+  headers: []
+  exhaustion_status: null
+  see: rate-limits/melty-rate-limits.yml

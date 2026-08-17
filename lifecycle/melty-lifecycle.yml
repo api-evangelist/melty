@@ -1,0 +1,57 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://pypi.org/pypi/kisee/json, https://pypi.org/pypi/pasee/json, https://api.github.com/orgs/meltygroup
+  and https://www.melty.fr/mentions-legales
+note: >-
+  Melty publishes no API versioning policy, no deprecation policy, no SLA and no status page, because
+  it operates no API. What can be recorded honestly is the release lifecycle of the two open-source
+  servers it published, and the corporate lifecycle of the company itself. Both packages use CalVer
+  and both have been dormant since 2021.
+versioning:
+  scheme: calver
+  pattern: YY.M[.PATCH]
+  applies_to: kisee, pasee (PyPI releases)
+  api_versioning: none
+  note: No URL, header or media-type API version negotiation is documented for either server.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    RFC 8594 Sunset / Deprecation headers are not documented or emitted. No deprecation policy page
+    exists on any Melty surface.
+sla:
+  published: false
+status_page:
+  published: false
+  note: >-
+    No status.melty.fr or equivalent. melty.fr is a consumer publishing site; no availability
+    commitment is made to any developer audience.
+releases:
+- component: kisee
+  latest: 21.9.0
+  released: '2021-09-03'
+  registry: pypi
+  dormant_since: '2021-09-03'
+- component: pasee
+  latest: 21.4.1
+  released: '2021-04-23'
+  registry: pypi
+  dormant_since: '2021-04-23'
+corporate:
+- date: '2008'
+  event: Melty founded in Paris by Alexandre Malsch, Jonathan Surpin and Jérémy Nicolas; operating entity EEPLE SAS.
+- date: '2021'
+  event: >-
+    Reworld Media acquires 100% of Melty's shares in a distressed M&A operation.
+  source: https://fr.wikipedia.org/wiki/Melty
+- date: '2022-04-05'
+  event: >-
+    Paris Commercial Court approves the conciliation agreement between Melty and Reworld Media,
+    BPI France, BNP Paribas and Société Générale.
+  source: https://www.tellechea-avocats.fr/2022/09/13/tellechea-avocats-conseille-les-societes-eeple-et-reworld-media-dans-le-cadre-de-la-procedure-de-conciliation-de-melty/
+- date: '2026-08-17'
+  event: >-
+    melty.fr live and publishing daily; legal notice names EEPLE SAS as publisher within Groupe
+    Reworld Media. Corporate site meltygroup.com returns HTTP 526 (origin TLS handshake failure).

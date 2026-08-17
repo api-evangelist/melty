@@ -1,0 +1,68 @@
+generated: '2026-08-17'
+method: derived
+source: >-
+  https://github.com/meltygroup/kisee (README + example-settings.toml),
+  https://github.com/meltygroup/pasee (README + docs/API.rst), https://kisee.readthedocs.io/en/latest/,
+  https://pasee.readthedocs.io/en/latest/
+note: >-
+  Scoped to the two open-source identity servers Melty Group published; Melty itself operates no API
+  and makes no conformance claim anywhere on melty.fr. No certification, audit or compliance
+  programme is published, so no `Compliance` pointer is emitted in apis.yml.
+standards:
+- id: jwt
+  name: JSON Web Token (RFC 7519)
+  conforms: true
+  evidence: >-
+    Kisee's entire purpose is issuing JWTs — `POST /jwt/` with a username/password pair returns a
+    `tokens[]` array of JWTs. Pasee issues and validates the same tokens.
+- id: jws-es256
+  name: JSON Web Signature ES256 (RFC 7515 / RFC 7518)
+  conforms: true
+  evidence: >-
+    Both servers ship `algorithm = "ES256"` in their example settings and are configured with an
+    EC key pair. The published examples note P-256 was chosen for JS client compatibility.
+- id: json-home
+  name: Home Documents for HTTP APIs (draft-nottingham-json-home)
+  conforms: true
+  applies_to: pasee
+  evidence: >-
+    docs/API.rst — "You can get a JSON-Home on `/` describing the following resources: users,
+    groups, tokens."
+- id: corejson
+  name: Core API / CoreJSON hypermedia
+  conforms: true
+  applies_to: kisee
+  evidence: >-
+    Kisee responses are CoreJSON documents (`"_type": "document"`, `"_meta"`, typed `"link"`
+    objects with `action` and `fields`), as shown verbatim in the repository README.
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: false
+  evidence: >-
+    No authorization server, no grant types, no scopes, no token endpoint metadata. Kisee is a
+    direct password-for-JWT exchange. https://www.melty.fr/.well-known/oauth-authorization-server
+    returned HTTP 404.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: >-
+    No discovery document is served. https://www.melty.fr/.well-known/openid-configuration returned
+    HTTP 404, and neither server publishes an OIDC provider configuration.
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457 / RFC 7807)
+  conforms: false
+  evidence: No `application/problem+json` responses are documented in either repository.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    No openapi.* or swagger.* file exists in any of the 7 meltygroup repositories (full recursive
+    tree walk), and https://www.melty.fr/openapi.json returned HTTP 404.
+- id: pagination
+  name: Documented pagination
+  conforms: false
+  evidence: No pagination style, parameters or link relations are documented for either server.
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  evidence: No idempotency key header, scope or retention window is documented.

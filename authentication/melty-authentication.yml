@@ -1,0 +1,62 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://github.com/meltygroup/kisee (README), https://github.com/meltygroup/pasee (docs/API.rst),
+  https://kisee.readthedocs.io/en/latest/, https://pasee.readthedocs.io/en/latest/
+docs: https://kisee.readthedocs.io/en/latest/
+note: >-
+  Written from the published documentation of the two open-source servers, not derived from an
+  OpenAPI — none exists (derive-authentication.py found 0 auth profiles for this provider). Melty
+  itself exposes no authenticated API, so there is no Melty-issued credential of any kind: nothing
+  below is obtained from Melty, it is what the software you host does once you run it.
+apis:
+- aid: melty-kisee
+  schemes:
+  - id: password-grant
+    type: http
+    scheme: basic-equivalent
+    location: request body
+    endpoint: POST /jwt/
+    description: >-
+      Unauthenticated POST of `{"username": "...", "password": "..."}` to `/jwt/` returns a CoreJSON
+      document containing a `tokens[]` array of JWTs. This is the only credential exchange Kisee
+      performs.
+  - id: bearer-jwt
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    algorithm: ES256
+    description: >-
+      Issued JWTs carry `iss`, `sub`, `exp` and `jti` claims and are signed with an EC key pair using
+      ES256. The signing key and issuer are set by the operator in the server's settings file.
+  self_registration:
+    supported: true
+    endpoint: POST /users/
+    description: >-
+      A new user may self-register by POSTing `{"username", "password", "email"}` to `/users/`;
+      the server answers 201 Created with a `Location` header. Whether this is enabled is an
+      operator decision.
+  identity_backends:
+    pluggable: true
+    documented: [in-memory demo backend, PostgreSQL, LDAP, flat file, any custom Python class]
+    note: The operator supplies the backend; Kisee ships a demo backend and a PostgreSQL schema.
+- aid: melty-pasee
+  schemes:
+  - id: bearer-jwt
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    algorithm: ES256
+    description: >-
+      Pasee validates and issues ES256-signed JWTs and layers group membership on top. Tokens are
+      managed through the `tokens` resource advertised in the JSON-Home document at `/`.
+  federation:
+    supported: true
+    providers_documented: [one or many Kisee instances, Twitter, GitHub]
+    note: >-
+      Pasee is a layer over multiple identity managers; the specific external providers enabled are
+      an operator configuration choice, not a Melty-hosted service.
+oauth2: false
+openid_connect: false
+mutual_tls: false
+api_keys: false

@@ -1,0 +1,68 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://github.com/meltygroup (first-party GitHub organisation, blog https://www.meltygroup.com)
+  cross-checked against the PyPI JSON metadata endpoint https://pypi.org/pypi/<name>/json
+note: >-
+  These are NOT client SDKs for a Melty API — Melty publishes no API product. They are MIT-licensed
+  standalone server/tooling packages Melty Group wrote in-house and released as open source. No
+  `SDKs` pointer is emitted in apis.yml for that reason. Registries searched with no first-party
+  Melty result: npm, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io.
+package_count: 3
+official_count: 2
+packages:
+- name: kisee
+  registry: pypi
+  url: https://pypi.org/project/kisee/
+  language: python
+  official: true
+  version: 21.9.0
+  published: '2021-09-03'
+  license: MIT
+  repository: https://github.com/meltygroup/kisee
+  docs: https://kisee.readthedocs.io/en/latest/
+  summary: HTTP server managing identities — exchanges username/password pairs for JWTs.
+  note: >-
+    Server, not a client library. PyPI metadata names meltygroup as the project homepage. CalVer
+    (YY.M.PATCH); last release 2021-09-03, so the package has been dormant for roughly five years.
+- name: pasee
+  registry: pypi
+  url: https://pypi.org/project/pasee/
+  language: python
+  official: true
+  version: 21.4.1
+  published: '2021-04-23'
+  license: MIT
+  repository: https://github.com/meltygroup/pasee
+  docs: https://pasee.readthedocs.io/en/latest/
+  summary: HTTP server managing users — group and identity management over one or more Kisee instances.
+  note: >-
+    Server, not a client library. PyPI metadata names meltygroup as the project homepage. CalVer
+    (YY.M.PATCH); last release 2021-04-23.
+- name: ansible-parallel
+  registry: pypi
+  url: https://pypi.org/project/ansible-parallel/
+  language: python
+  official: false
+  version: 2023.7.26
+  published: '2023-07-26'
+  license: MIT
+  repository: https://github.com/meltygroup/ansible-parallel
+  summary: Run ansible playbooks in parallel.
+  note: >-
+    Mirrored in the meltygroup GitHub organisation, but the current PyPI metadata points its
+    homepage at https://git.afpy.org/mdk/ansible-parallel — the maintainer's personal repository —
+    so it is recorded as official:false rather than as a Melty-owned package.
+absent:
+- name: httpserializers
+  registry: pypi
+  version: null
+  note: >-
+    Repository exists at https://github.com/meltygroup/httpserializers but https://pypi.org/pypi/httpserializers/json
+    returned HTTP 404 — never published to PyPI, so there is no version or release date to record.
+- name: cookiecutter-aiohttp
+  registry: pypi
+  version: null
+  note: >-
+    Cookiecutter template repository only; https://pypi.org/pypi/cookiecutter-aiohttp/json returned
+    HTTP 404. Distributed by `cookiecutter gh:meltygroup/cookiecutter-aiohttp`, not by a registry.

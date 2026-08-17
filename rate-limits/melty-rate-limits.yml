@@ -1,0 +1,25 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://kisee.readthedocs.io/en/latest/, https://pasee.readthedocs.io/en/latest/ and
+  https://www.melty.fr/robots.txt
+limit_count: 0
+note: >-
+  No rate limits are published. Melty operates no API, so there is no runtime quota to document.
+  Neither Kisee nor Pasee documents rate limiting, a 429 response, or any RateLimit-* / Retry-After
+  header — both are self-hosted servers where any throttling would be the operator's own reverse
+  proxy, not the software's. The only published machine-facing throttle on any Melty surface is a
+  crawl directive, recorded below because it is the one real signal an automated client gets.
+limits: []
+crawl_directives:
+- source: https://www.melty.fr/robots.txt
+  status: 200
+  directive: 'User-agent: CCBot — Crawl-delay: 2'
+  note: Two-second crawl delay applied to Common Crawl's CCBot; no other user-agent is delayed.
+- source: https://www.melty.fr/robots.txt
+  status: 200
+  directive: 'User-agent: * — Disallow: /wp-json/, Disallow: /?rest_route='
+  note: >-
+    The underlying WordPress REST API is explicitly disallowed to all automated clients. Honored by
+    this pipeline; the path was not fetched.
+response_headers: []

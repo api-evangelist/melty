@@ -1,0 +1,14 @@
+generated: '2026-08-17'
+method: searched
+source: https://www.melty.fr/ and https://www.reworldmediaconnect.com/nos-marques/young/melty/
+plan_count: 0
+note: >-
+  Melty publishes no API plans, tiers or developer pricing of any kind, because it sells no API.
+  melty.fr is a free, advertising-funded consumer media site: the commercial product is advertising
+  and branded-content inventory, sold offline by Reworld Media Connect, which publishes no rate card
+  or self-serve pricing page either. The two open-source servers Melty Group published (Kisee, Pasee)
+  are MIT-licensed and free with no hosted paid tier. plan_count is an honest zero, not a gap in the
+  search.
+commercial_model: advertising
+self_serve_pricing: false
+plans: []
