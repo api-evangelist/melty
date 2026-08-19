@@ -14,7 +14,7 @@ url: https://raw.githubusercontent.com/api-evangelist/melty/refs/heads/main/apis
 image: https://www.melty.fr/wp-content/uploads/meltyfr/2023/06/melty-logo.jpg
 x-type: company
 x-source: serena-portfolio
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
