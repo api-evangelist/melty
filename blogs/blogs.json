@@ -1,0 +1,21 @@
+{
+  "repo": "melty",
+  "feeds": [
+    {
+      "source": "https://www.melty.fr/",
+      "feed_url": "https://www.melty.fr/feed",
+      "title": "",
+      "saved": 50,
+      "method": "discovered"
+    },
+    {
+      "source": "https://www.melty.fr/actu/",
+      "feed_url": "https://www.melty.fr/feed",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 50,
+  "fetched": "2026-08-22T20:20:02Z"
+}
