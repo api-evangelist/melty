@@ -11,6 +11,18 @@ description: >-
   meltygroup GitHub organisation, which carries the identity servers Kisee and Pasee — MIT-licensed,
   self-hosted Python HTTP API servers written in-house and released to PyPI, last published in 2021.
 url: https://raw.githubusercontent.com/api-evangelist/melty/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 image: https://www.melty.fr/wp-content/uploads/meltyfr/2023/06/melty-logo.jpg
 x-type: company
 x-source: serena-portfolio
